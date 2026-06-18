@@ -535,8 +535,8 @@ body.nav-open .nav-overlay{display:block;opacity:1}
 }
 
 /* ─── Gate — page d'accueil + accès protégé ─── */
-body.gate-locked{overflow:hidden}
-body.gate-locked .page,body.gate-locked .nav-toggle,body.gate-locked .side-nav,body.gate-locked .bank-viewer{visibility:hidden}
+body.{overflow:hidden}
+body. .page,body. .nav-toggle,body. .side-nav,body. .bank-viewer{visibility:hidden}
 .gate{position:fixed;inset:0;z-index:9999;background:var(--laterite);color:var(--blanc);display:flex;align-items:center;justify-content:center;padding:48px 32px;overflow:hidden;transition:opacity 0.45s ease}
 .gate::before{content:'';position:absolute;top:-140px;right:-140px;width:480px;height:480px;border-radius:50%;background:var(--sable);opacity:0.06;pointer-events:none}
 .gate::after{content:'';position:absolute;bottom:-100px;left:-60px;width:340px;height:340px;border-radius:50%;background:var(--argile);opacity:0.18;pointer-events:none}
@@ -565,7 +565,7 @@ body.gate-locked .page,body.gate-locked .nav-toggle,body.gate-locked .side-nav,b
   .gate-title{font-size:24px}
   .gate-logo{width:220px;margin-bottom:28px}
 }
-@media print{.gate{display:none !important}body.gate-locked{overflow:visible}body.gate-locked .page,body.gate-locked .nav-toggle,body.gate-locked .side-nav,body.gate-locked .bank-viewer,body.gate-locked .lang-nav,body.gate-locked .right-rail{visibility:visible}}
+@media print{.gate{display:none !important}body.{overflow:visible}body. .page,body. .nav-toggle,body. .side-nav,body. .bank-viewer,body. .lang-nav,body. .right-rail{visibility:visible}}
 /* ─── Right-rail (lang + side-nav) ─── */
 .right-rail{position:fixed;right:20px;top:50%;transform:translateY(-50%);z-index:100;display:flex;flex-direction:column;gap:8px;align-items:flex-end;max-height:90vh;pointer-events:none}
 .right-rail>*{pointer-events:auto}
@@ -586,27 +586,13 @@ body.gate-locked .page,body.gate-locked .nav-toggle,body.gate-locked .side-nav,b
   .lang-nav button{padding:6px 9px;font-size:10px}
 }
 @media print{.lang-nav,.right-rail{position:static !important;display:contents !important}.lang-nav{display:none !important}.right-rail .side-nav{display:none !important}}
-body.gate-locked .lang-nav,body.gate-locked .right-rail{visibility:hidden}
+body. .lang-nav,body. .right-rail{visibility:hidden}
 
 </style>
 </head>
-<body class="gate-locked">
+<body class="">
 
-<div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gateTitle">
-  <div class="gate-inner">
-    <img src="images/Logotype-light_2x.png" alt="Infras" class="gate-logo">
-    <div class="gate-line"></div>
-    <div class="gate-eyebrow" data-i18n>Document confidentiel</div>
-    <h1 class="gate-title" id="gateTitle" data-i18n>Charte graphique</h1>
-    <p class="gate-desc" data-i18n-html>Accès réservé. Saisissez le mot de passe communiqué par le groupe Infras pour consulter le document.</p>
-    <form class="gate-form" id="gateForm" autocomplete="off">
-      <input type="password" class="gate-input" id="gateInput" placeholder="Mot de passe" data-i18n-attr-placeholder="key:gate-placeholder" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="Mot de passe" required>
-      <button type="submit" class="gate-btn" id="gateBtn" data-i18n>Accéder</button>
-      <div class="gate-error" id="gateError" role="alert" aria-live="polite"></div>
-    </form>
-  </div>
-  <div class="gate-foot" data-i18n-html>Réf. YPD-2026-INF · © 2026 Yan Pelayo Design</div>
-</div>
+
 
 <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-controls="sideNav" data-i18n-attr-aria-label="key:menu"><span></span></button>
 <div class="nav-overlay" id="navOverlay"></div>
@@ -1794,11 +1780,7 @@ body.gate-locked .lang-nav,body.gate-locked .right-rail{visibility:hidden}
   <img class="bank-viewer-img" id="mockupViewerImg" alt="" oncontextmenu="return false" draggable="false">
 </div>
 
-<div class="footer">
-  <img src="images/ypdlogo.png" alt="YPD" class="footer-logo">
-  <p data-i18n-html>Directeur de création<br>Ce document est confidentiel et destiné exclusivement au groupe Infras.<br>Réf. YPD-2026-INF · © 2026</p>
-  <a href="https://yanpelayodesign.netlify.app/" target="_blank" class="footer-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>yanpelayodesign.netlify.app</a>
-</div>
+
 
 </div>
 
@@ -1815,7 +1797,7 @@ body.gate-locked .lang-nav,body.gate-locked .right-rail{visibility:hidden}
   if(!gate||!form)return;
   function unlock(){
     try{sessionStorage.setItem(STORAGE_KEY,'1')}catch(e){}
-    document.body.classList.remove('gate-locked');
+    document.body.classList.remove('');
     gate.classList.add('hidden');
     setTimeout(function(){if(gate.parentNode)gate.parentNode.removeChild(gate)},500);
   }
