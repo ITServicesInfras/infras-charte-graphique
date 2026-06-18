@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="fr" id="htmlRoot">
+
+<!-- Mirrored from infras-guidelines2.netlify.app/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 18 Jun 2026 10:54:39 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Charte Graphique — Infras</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&amp;family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&amp;family=DM+Serif+Display:ital@0;1&amp;display=swap" rel="stylesheet">
 <style>
 :root{--laterite:#952822;--sable:#F9D592;--brique:#6B1A14;--argile:#A8442D;--fondation:#B57254;--ocre:#C49A3C;--savane:#DDB066;--dune:#E8D2A8;--blanc:#FFFFFF;--pierre:#F5F1EB;--mortier:#746F6B;--bitume:#2A2320;--barlow:'Barlow Condensed',sans-serif;--source:'Source Sans 3',sans-serif;--dm:'DM Serif Display',serif}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -410,16 +413,29 @@ body.nav-open .nav-overlay{display:block;opacity:1}
 
 /* ─── Print / PDF ─── */
 @media print{
-  @page{size:A4;margin:14mm 12mm}
+  /* Pleine page : marges @page verticales pour la respiration en haut/bas de chaque
+     page (y compris pages de continuation) ; le fond Pierre est complété jusqu'aux
+     bords par une sous-couche ajoutée au PDF en post-traitement (build-pdf) */
+  @page{size:A4;margin:12mm 0}
+  @page:first{margin:0}
   html,body{background:var(--pierre) !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;color-adjust:exact}
   .side-nav,.nav-toggle,.nav-overlay,.toast{display:none !important}
   .page{max-width:none;overflow:visible}
-  .cover{break-after:page;page-break-after:always;min-height:auto;padding:50px 40px}
+  .cover{break-after:page;page-break-after:always;min-height:297mm;padding:22mm 16mm 18mm}
   .cover-title{font-size:34px}
-  .section{padding:32px 36px;break-inside:auto;page-break-inside:auto}
+  /* Chaque chapitre démarre sur une nouvelle page A4 */
+  .section{padding:8mm 14mm 10mm;break-before:page;page-break-before:always;break-inside:auto;page-break-inside:auto}
+  hr.divider{display:none}
   .section-title{font-size:28px}
-  .fam,.typo-block,.logo-rules,.editorial-grid,.usage-grid,.picto-examples,.recap-grid,.planche-grid,.greyscale-grid,.exclusion-grid,.context-grid,.variants-grid,.cmyk-table,.hier-table,.dl-row,.scale-board,.filiales-grid,.picto-block,.vocab-cloud,.ed-examples{break-inside:avoid;page-break-inside:avoid}
-  .ed-ex,.pair-card,.dl-btn,.logo-card,.filiale-card,.exclusion-card,.planche-cell,.charset-box,.hero-box,.picto-example,.ed-card,.size-card,.logo-rule-card,.swatch,.usage-card{break-inside:avoid;page-break-inside:avoid}
+  /* Les titres restent solidaires du contenu qui les suit */
+  .section-label,.section-title,.fam-label,h3,h4{break-after:avoid;page-break-after:avoid}
+  /* Insécables : uniquement les blocs de taille raisonnable (< demi-page).
+     Les grands conteneurs (.fam, grilles de cartes) peuvent se fragmenter entre
+     leurs cartes — sinon ils sautent de page entiers et laissent de grands vides */
+  .logo-rules,.exclusion-grid,.cmyk-table,.hier-table,.dl-row,.scale-board,.filiales-grid,.picto-block,.metier-block,.vocab-cloud{break-inside:avoid;page-break-inside:avoid}
+  /* Pas de chapitre Téléchargements dans le PDF (liens inopérants à l'impression) */
+  #fichiers{display:none !important}
+  .ed-ex,.pair-card,.dl-btn,.logo-card,.filiale-card,.exclusion-card,.planche-cell,.charset-box,.hero-box,.picto-example,.ed-card,.size-card,.logo-rule-card,.swatch,.usage-card,.picto-count,.cat-preview,.bank-meta{break-inside:avoid;page-break-inside:avoid}
   section,hr{break-inside:auto}
   hr.divider{border-top-color:rgba(42,35,32,0.2)}
   .logo-hero{padding:48px 20px}
@@ -428,7 +444,7 @@ body.nav-open .nav-overlay{display:block;opacity:1}
   .dl-btn:hover{transform:none;box-shadow:none}
   .dl-btn{page-break-inside:avoid}
   a{color:inherit !important;text-decoration:none}
-  .footer{padding:28px 36px}
+  .footer{padding:28px 36px;break-inside:avoid;page-break-inside:avoid}
   /* Ensure chips, swatches and cards print with backgrounds */
   .swatch,.recap-chip,.vocab-chip,.hero-box,.picto-block,.picto-example.dark,.logo-card,.filiale-card,.planche-cell{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
@@ -788,6 +804,7 @@ body.gate-locked .lang-nav,body.gate-locked .right-rail{visibility:hidden}
   <div class="logo-rules">
     <div class="logo-rule-card"><h4 data-i18n>Usage principal</h4><p data-i18n-html>Chaque filiale utilise son logotype pays sur ses supports locaux : papeterie, signalétique de chantier, rapports d'activité et communications institutionnelles.</p></div>
     <div class="logo-rule-card"><h4 data-i18n>Cohérence groupe</h4><p data-i18n-html>Le monogramme « in » et la typographie restent strictement identiques. Seul le code pays (cam, civ, rwa, mad, sen) change, en minuscules, aligné sous le mot-marque. La filiale kenyane <strong>Infra AFE Ltd</strong> utilise le logotype groupe en attendant le dépôt de sa marque locale.</p></div>
+    <div class="logo-rule-card" style="grid-column:1/-1"><h4 data-i18n>Zone d'exclusion</h4><p data-i18n-html>Même principe que pour le logotype groupe : la largeur du point du « i » d'Infra sert d'unité de mesure « x ». Une marge minimale d'un « x » doit rester libre tout autour du logo filiale — aucun élément graphique, texte ou bord de cadre ne doit y empiéter. L'unité étant proportionnelle au logo, la zone d'exclusion s'adapte à toutes les tailles de reproduction.</p></div>
   </div>
 </section>
 <hr class="divider">
@@ -1663,6 +1680,7 @@ body.gate-locked .lang-nav,body.gate-locked .right-rail{visibility:hidden}
       <div class="dl-info"><div class="dl-title" data-i18n>Pictos domaines — Blanc</div><div class="dl-sub" data-i18n>12 icônes · 12 domaines · #FFFFFF</div></div>
       <div class="dl-right"><span class="dl-ext">svg</span><div class="dl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div></div>
     </a>
+  </div>
   <div class="dl-row">
     <a href="downloads/infras-pictogrammes-utiles-laterite-svg.zip" download class="dl-btn">
       <div class="dl-info"><div class="dl-title" data-i18n>Pictos utiles — Laterite</div><div class="dl-sub" data-i18n>2 icônes · Casque & cône · #952822</div></div>
@@ -1679,7 +1697,7 @@ body.gate-locked .lang-nav,body.gate-locked .right-rail{visibility:hidden}
       <div class="dl-right"><span class="dl-ext">svg</span><div class="dl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div></div>
     </a>
   </div>
-  </div></div>
+  </div>
 
   <div class="fam"><div class="fam-label" data-i18n>Pack favicon</div>
   <div class="dl-row">
@@ -1779,7 +1797,7 @@ body.gate-locked .lang-nav,body.gate-locked .right-rail{visibility:hidden}
 <div class="footer">
   <img src="images/ypdlogo.png" alt="YPD" class="footer-logo">
   <p data-i18n-html>Directeur de création<br>Ce document est confidentiel et destiné exclusivement au groupe Infras.<br>Réf. YPD-2026-INF · © 2026</p>
-  <a href="https://yanpelayodesign.netlify.app" target="_blank" class="footer-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>yanpelayodesign.netlify.app</a>
+  <a href="https://yanpelayodesign.netlify.app/" target="_blank" class="footer-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>yanpelayodesign.netlify.app</a>
 </div>
 
 </div>
@@ -2028,6 +2046,8 @@ function copyHex(el){var hex=el.getAttribute('data-hex');if(!hex)return;navigato
     'Cohérence groupe':'Group consistency',
     "Le monogramme « in » et la typographie restent strictement identiques. Seul le code pays (cam, civ, rwa, mad, sen) change, en minuscules, aligné sous le mot-marque. La filiale kenyane <strong>Infra AFE Ltd</strong> utilise le logotype groupe en attendant le dépôt de sa marque locale.":
       "The « in » monogram and the typography remain strictly identical. Only the country code (cam, civ, rwa, mad, sen) changes — lowercase, aligned beneath the wordmark. The Kenyan subsidiary <strong>Infra AFE Ltd</strong> uses the group logotype while its local trademark is being registered.",
+    "Même principe que pour le logotype groupe : la largeur du point du « i » d'Infra sert d'unité de mesure « x ». Une marge minimale d'un « x » doit rester libre tout autour du logo filiale — aucun élément graphique, texte ou bord de cadre ne doit y empiéter. L'unité étant proportionnelle au logo, la zone d'exclusion s'adapte à toutes les tailles de reproduction.":
+      "Same principle as the group logotype: the width of the dot on the « i » of Infra serves as the « x » unit of measure. A minimum margin of one « x » must remain clear all around the subsidiary logo — no graphic element, text or frame edge may encroach on it. As the unit is proportional to the logo, the exclusion zone scales with every reproduction size.",
 
     // ── Section 03 Couleurs ──
     '03 — Couleurs':'03 — Colors',
@@ -2622,4 +2642,6 @@ function copyHex(el){var hex=el.getAttribute('data-hex');if(!hex)return;navigato
 </script>
 
 </body>
+
+<!-- Mirrored from infras-guidelines2.netlify.app/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 18 Jun 2026 11:00:20 GMT -->
 </html>
