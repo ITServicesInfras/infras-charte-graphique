@@ -165,6 +165,7 @@ img{max-width:100%;height:auto;object-fit:contain}
 #fichiers .fam .dl-row{margin-top:0}
 #fichiers .fam .dl-row+.dl-row{margin-top:8px}
 #fichiers .dl-btn-half{max-width:calc(50% - 7px)}
+@media(max-width:768px){#fichiers .dl-btn-half{ max-width: 100%}}
 .dl-btn{flex:1;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 24px;border-radius:14px;background:var(--blanc);border:1px solid rgba(42,35,32,0.08);text-decoration:none;color:var(--bitume);transition:all 0.25s;position:relative;overflow:hidden;min-width:0}
 .dl-btn:hover{border-color:var(--laterite);transform:translateY(-2px);box-shadow:0 8px 24px rgba(149,40,34,0.08)}
 .dl-btn .dl-info{position:relative;z-index:2;flex:1;min-width:0}
@@ -197,7 +198,7 @@ img{max-width:100%;height:auto;object-fit:contain}
 .pair{display:flex;gap:14px;margin-top:14px}
 .pair-card{flex:1;background:var(--blanc);border-radius:14px;padding:24px 20px;border:1px solid rgba(42,35,32,0.05)}
 .context-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
-
+@media(max-width:768px){.charset-box{overflow-wrap: break-word}}
 /* ─── Hierarchy ─── */
 .hier-table{width:100%;border-collapse:collapse;margin-top:16px}
 .hier-table th{font-family:var(--barlow);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:#9a928a;text-align:left;padding:10px 12px;border-bottom:1px solid rgba(42,35,32,0.08)}
@@ -397,6 +398,9 @@ body.nav-open .nav-overlay{display:block;opacity:1}
 /* ─── Tablette portrait & petit mobile (<768px) : empilement ─── */
 @media(max-width:768px){.cover{padding:60px 28px 48px;min-height:100vh}.cover-logo{max-width:220px}.cover-title{font-size:32px}.section{padding:48px 28px}.row{flex-direction:column}.pair{flex-direction:column}.logo-grid,.exclusion-grid,.greyscale-grid,.logo-rules,.editorial-grid,.usage-grid,.sizes-grid,.variants-grid,.context-grid,.picto-examples{grid-template-columns:1fr}.filiales-grid{grid-template-columns:repeat(3,1fr)}.filiale-card{padding:14px 10px 32px;min-height:200px;gap:10px}.filiale-card .filiale-logo img{max-height:38px;max-width:85%}.logo-mono-row,.planche-grid{grid-template-columns:1fr 1fr}.recap-grid{grid-template-columns:repeat(2,1fr)}.cover-meta{flex-direction:column;gap:8px}.dl-row{flex-direction:column}.dl-btn .dl-ext{font-size:36px;right:50px}.logo-hero{padding:56px 20px}.logo-hero img{width:70%}.logo-hero.mono img{width:30%}.scale-board{flex-direction:column;align-items:center;gap:36px;padding:40px 24px}.scale-item{width:100%;align-items:center}.scale-divider{display:none}.scale-visual.print img,.scale-visual.screen img{width:113px}.scale-visual.mono img{width:25px}.charset-box .charset-row{font-size:18px}.picto-row{padding:0 20px;gap:14px}.picto-item{flex:0 0 32px;width:32px;height:32px}.picto-block{padding:54px 0 32px}.picto-block-swatch{top:18px}.metier-block{padding:54px 14px 26px}.metier-grid{grid-template-columns:repeat(2,1fr);gap:10px}.metier-col-items img{width:44px;height:44px}.cat-block{padding:54px 18px 24px}.cat-row{grid-template-columns:1fr;gap:6px;padding:12px 0}.cat-meta{flex-direction:row;align-items:baseline;gap:10px}.cat-items{gap:10px}.cat-items img{width:28px;height:28px}.cat-preview{flex-direction:column;align-items:flex-start;gap:14px;padding:22px}.cat-preview-items{justify-content:flex-start;gap:14px;flex-wrap:wrap}.cat-preview-items img{width:26px;height:26px}}
 @media(max-width:500px){.filiales-grid{grid-template-columns:repeat(2,1fr)}.filiale-card{min-height:220px}.filiale-card .filiale-logo img{max-height:42px}}
+
+/* ─── Tableau hiérarchie : scroll horizontal mobile ─── */
+@media(max-width:768px){.section{overflow-x:auto;-webkit-overflow-scrolling:touch}.hier-table{display:inline-table;min-width:100%;white-space:nowrap}}
 
 /* ─── Large écran (≥1200px) : +marges, +padding ─── */
 @media(min-width:1200px){
