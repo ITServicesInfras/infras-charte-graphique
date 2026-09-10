@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html lang="fr" id="htmlRoot">
-
-<!-- Mirrored from infras-guidelines2.netlify.app/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 18 Jun 2026 10:54:39 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Charte Graphique — Infras</title>
-<link rel="preconnect" href="https://fonts.googleapis.com/">
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&amp;family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&amp;family=DM+Serif+Display:ital@0;1&amp;display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
 :root{--laterite:#952822;--sable:#F9D592;--brique:#6B1A14;--argile:#A8442D;--fondation:#B57254;--ocre:#C49A3C;--savane:#DDB066;--dune:#E8D2A8;--blanc:#FFFFFF;--pierre:#F5F1EB;--mortier:#746F6B;--bitume:#2A2320;--barlow:'Barlow Condensed',sans-serif;--source:'Source Sans 3',sans-serif;--dm:'DM Serif Display',serif}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -535,8 +532,8 @@ body.nav-open .nav-overlay{display:block;opacity:1}
 }
 
 /* ─── Gate — page d'accueil + accès protégé ─── */
-body.{overflow:hidden}
-body. .page,body. .nav-toggle,body. .side-nav,body. .bank-viewer{visibility:hidden}
+body.gate-locked{overflow:hidden}
+body.gate-locked .page,body.gate-locked .nav-toggle,body.gate-locked .side-nav,body.gate-locked .bank-viewer{visibility:hidden}
 .gate{position:fixed;inset:0;z-index:9999;background:var(--laterite);color:var(--blanc);display:flex;align-items:center;justify-content:center;padding:48px 32px;overflow:hidden;transition:opacity 0.45s ease}
 .gate::before{content:'';position:absolute;top:-140px;right:-140px;width:480px;height:480px;border-radius:50%;background:var(--sable);opacity:0.06;pointer-events:none}
 .gate::after{content:'';position:absolute;bottom:-100px;left:-60px;width:340px;height:340px;border-radius:50%;background:var(--argile);opacity:0.18;pointer-events:none}
@@ -565,7 +562,7 @@ body. .page,body. .nav-toggle,body. .side-nav,body. .bank-viewer{visibility:hidd
   .gate-title{font-size:24px}
   .gate-logo{width:220px;margin-bottom:28px}
 }
-@media print{.gate{display:none !important}body.{overflow:visible}body. .page,body. .nav-toggle,body. .side-nav,body. .bank-viewer,body. .lang-nav,body. .right-rail{visibility:visible}}
+@media print{.gate{display:none !important}body.gate-locked{overflow:visible}body.gate-locked .page,body.gate-locked .nav-toggle,body.gate-locked .side-nav,body.gate-locked .bank-viewer,body.gate-locked .lang-nav,body.gate-locked .right-rail{visibility:visible}}
 /* ─── Right-rail (lang + side-nav) ─── */
 .right-rail{position:fixed;right:20px;top:50%;transform:translateY(-50%);z-index:100;display:flex;flex-direction:column;gap:8px;align-items:flex-end;max-height:90vh;pointer-events:none}
 .right-rail>*{pointer-events:auto}
@@ -586,12 +583,11 @@ body. .page,body. .nav-toggle,body. .side-nav,body. .bank-viewer{visibility:hidd
   .lang-nav button{padding:6px 9px;font-size:10px}
 }
 @media print{.lang-nav,.right-rail{position:static !important;display:contents !important}.lang-nav{display:none !important}.right-rail .side-nav{display:none !important}}
-body. .lang-nav,body. .right-rail{visibility:hidden}
+body.gate-locked .lang-nav,body.gate-locked .right-rail{visibility:hidden}
 
 </style>
 </head>
 <body class="">
-
 
 
 <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-controls="sideNav" data-i18n-attr-aria-label="key:menu"><span></span></button>
@@ -629,7 +625,7 @@ body. .lang-nav,body. .right-rail{visibility:hidden}
   <div class="cover-line"></div>
   <div class="cover-badge" data-i18n>Charte graphique</div>
   <div class="cover-title" data-i18n>Identité de marque</div>
-  <div class="cover-meta"><span>Réf. YPD-2026-INF</span><span data-i18n>Juin 2026</span><span data-i18n>Version 2.8</span><span>Yan Pelayo Design</span></div>
+  <div class="cover-meta"><span>Réf. YPD-2026-INF</span><span data-i18n>Juin 2026</span><span data-i18n>Version 2.8</span></div>
 </div></div>
 
 <section class="section" id="logo">
@@ -1797,7 +1793,7 @@ body. .lang-nav,body. .right-rail{visibility:hidden}
   if(!gate||!form)return;
   function unlock(){
     try{sessionStorage.setItem(STORAGE_KEY,'1')}catch(e){}
-    document.body.classList.remove('');
+    document.body.classList.remove('gate-locked');
     gate.classList.add('hidden');
     setTimeout(function(){if(gate.parentNode)gate.parentNode.removeChild(gate)},500);
   }
@@ -2624,6 +2620,4 @@ function copyHex(el){var hex=el.getAttribute('data-hex');if(!hex)return;navigato
 </script>
 
 </body>
-
-<!-- Mirrored from infras-guidelines2.netlify.app/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 18 Jun 2026 11:00:20 GMT -->
 </html>
